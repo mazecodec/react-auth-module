@@ -3,13 +3,13 @@ import useAuth from '../../features/auth/services/useAuth.jsx';
 
 const Logout = (props) => {
   const {logout} = useAuth();
-  const logoutHandler = async () => {
-    await logout();
+  const logoutHandler = () => {
+    logout();
   }
 
   return (
       <div>
-        <button onClick={logoutHandler}>LogOut</button>
+        <button type="button" onClick={logoutHandler}>LogOut</button>
       </div>
   );
 };
