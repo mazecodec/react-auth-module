@@ -2,7 +2,7 @@ import loginApiRequest from "../api/authApiService.js";
 import { loginAuth, logoutAuth } from "../slices/authSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import authStorage from "../../../app/localStorage/authStorage.js";
+import authStorage from "../localStorage/authStorage.js";
 
 const useAuth = () => {
 	const dispatch = useDispatch();
