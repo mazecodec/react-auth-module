@@ -1,20 +1,29 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
+import React from "react";
+import useAuth from "../../features/auth/hooks/useAuth.jsx";
 
 const Header = () => {
-  const user = useSelector(state => state.auth.user)
+	const { user } = useAuth();
+
+  const renderUser  = (user) => {
+    if(!user) {
+      return null;
+    }
 
     return (
-        <header>
-          <div>
-            <ul>
-              <li>{user.first_name}</li>
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-            </ul>
-          </div>
-        </header>
+      <ul>
+        <li>{user.first_name}</li>
+        <li>{user.username}</li>
+        <li>{user.email}</li>
+      </ul>
     );
+  }
+
+	return (
+		<header>
+			<h1>User</h1>
+      {renderUser(user)}
+		</header>
+	);
 };
 
-export default Header
+export default Header;

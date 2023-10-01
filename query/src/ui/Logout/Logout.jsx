@@ -1,10 +1,10 @@
 import "./Logout.css"
-import useAuth from '../../features/auth/services/useAuth.jsx';
+import useAuth from '../../features/auth/hooks/useAuth.jsx';
 
 const Logout = (props) => {
   const {logout} = useAuth();
-  const logoutHandler = () => {
-    logout();
+  const logoutHandler =  () => {
+     logout();
   }
 
   return (

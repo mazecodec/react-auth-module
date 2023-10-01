@@ -1,19 +1,25 @@
-import React from 'react';
-import './Login.css';
-import useAuth from '../../features/auth/services/useAuth.jsx';
+import React from "react";
+import "./Login.css";
+import useAuth from "../../features/auth/hooks/useAuth.jsx";
 
 const Login = (props) => {
-  const {login} = useAuth();
-  const loginHandler = async () => {
-    await login('demo', 1234);
-  }
+	const { login } = useAuth();
+	const loginHandler = async () => {
+		try {
+			const response = await login({username: "demo", password: 1234 });
+			console.log(response);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 
-  return (
-      <div>
-        <button onClick={loginHandler}>LogIn</button>
-
-      </div>
-  );
+	return (
+		<div>
+			<button type="button" onClick={loginHandler}>
+				LogIn
+			</button>
+		</div>
+	);
 };
 
 Login.propTypes = {};
