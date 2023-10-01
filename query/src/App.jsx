@@ -1,19 +1,21 @@
 import './App.css'
-import {useDispatch, useSelector} from 'react-redux';
 import Header from './ui/Header/Header.jsx';
 import Login from './ui/Login/Login.jsx';
+import useAuth from './features/auth/hooks/useAuth.jsx';
+import Logout from './ui/Logout/Logout.jsx';
 
 function App() {
-  const authStorage = useSelector(state => state.auth)
+  const {user} = useAuth()
 
   return (
     <div>
       <Header/>
-      <h1>User</h1>
+
       <pre>
-        { JSON.stringify(authStorage , null, 2)}
+        { JSON.stringify(user , null, 2)}
       </pre>
       <Login/>
+      <Logout/>
     </div>
   );
 
