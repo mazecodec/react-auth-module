@@ -1,6 +1,5 @@
-import React from 'react';
-import './Login.css';
 import useAuth from '../../features/auth/services/useAuth.jsx';
+import './Login.css';
 
 const Login = (props) => {
   const {login} = useAuth();
@@ -10,8 +9,7 @@ const Login = (props) => {
 
   return (
       <div>
-        <button onClick={loginHandler}>LogIn</button>
-
+        <button type="button" onClick={loginHandler}>LogIn</button>
       </div>
   );
 };
