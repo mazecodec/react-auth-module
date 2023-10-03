@@ -1,8 +1,32 @@
-import axios from 'axios'
+import axios from "axios";
 
-const loginApiRequest = async (username, password) => {
-  const {data} = await axios.get('https://random-data-api.com/api/v2/users?size=1&is_xml=false');
+export const API_URI = "https://dummyjson.com/";
 
-  return data;
+const AuthApi = axios.create({
+	baseURL: API_URI,
+})
+
+export const loginApiRequest = async (username, password) => {
+	const { data } = await AuthApi.post(
+			'auth/login',
+		{
+			username: username,
+			password: password,
+		},
+		{
+			headers: {
+				"Content-Type": "application/json; charset=UTF-8",
+			},
+		},
+	);
+
+	return data;
+};
+
+export const setAuthHeader = (token) => {
+	AuthApi.defaults.headers.common.Authorization = `Bearer ${token}`;
 }
-export default loginApiRequest;
+
+export const setBaseURL = (url) => {
+	AuthApi.defaults.baseURL = url;
+}

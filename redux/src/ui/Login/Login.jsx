@@ -1,15 +1,14 @@
-import useAuth from '../../features/auth/services/useAuth.jsx';
-import './Login.css';
+import useAuth from '../../features/auth/hooks/useAuth';
 
 const Login = (props) => {
-  const {login} = useAuth();
+  const {login, isLoading} = useAuth();
   const loginHandler = async () => {
-    await login('demo', 1234);
+    await login('kminchelle', '0lelplR');
   }
 
   return (
       <div>
-        <button type="button" onClick={loginHandler}>LogIn</button>
+        <button type="button" onClick={loginHandler}>{isLoading ? 'Loading...' : 'Login'}</button>
       </div>
   );
 };

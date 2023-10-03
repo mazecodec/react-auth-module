@@ -1,5 +1,5 @@
 import React from 'react';
-import useAuth from '../../features/auth/services/useAuth.jsx';
+import useAuth from '../../features/auth/hooks/useAuth';
 
 /**
  * Renders the header component displaying user information.
@@ -7,7 +7,7 @@ import useAuth from '../../features/auth/services/useAuth.jsx';
  * @return {JSX.Element} The header component.
  */
 const Header = () => {
-  const {user} = useAuth()
+  const {user, error} = useAuth()
 
   const renderUser = () => {
     if(!user) {
@@ -15,9 +15,10 @@ const Header = () => {
     }
 
     return (<ul>
-      <li>{user.first_name}</li>
-      <li>{user.username}</li>
-      <li>{user.email}</li>
+      <li><img src={user?.image} alt="Image Avatar" /></li>
+      <li>{user?.firstName}</li>
+      <li>{user?.username}</li>
+      <li>{user?.email}</li>
     </ul>
     )
   }
@@ -25,6 +26,7 @@ const Header = () => {
   return (
       <header>
         <h1>User</h1>
+        {error && <p>{error}</p>}
         {renderUser()}
       </header>
   );

@@ -1,17 +1,18 @@
-import "./Logout.css"
-import useAuth from '../../features/auth/services/useAuth.jsx';
+import useAuth from "../../features/auth/hooks/useAuth";
 
 const Logout = (props) => {
-  const {logout} = useAuth();
-  const logoutHandler = () => {
-    logout();
-  }
+	const { logout } = useAuth();
+	const logoutHandler = () => {
+		logout();
+	};
 
-  return (
-      <div>
-        <button type="button" onClick={logoutHandler}>LogOut</button>
-      </div>
-  );
+	return (
+		<div>
+			<button type="button" onClick={logoutHandler}>
+				LogOut
+			</button>
+		</div>
+	);
 };
 
 Logout.propTypes = {};

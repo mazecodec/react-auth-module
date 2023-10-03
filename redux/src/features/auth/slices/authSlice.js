@@ -5,35 +5,41 @@ import {createSlice} from '@reduxjs/toolkit';
  * @type {{success: boolean, error: null, user: User}}
  */
 const initialState = {
-  user: {},
+  user: null,
   error: null,
-  success: false
+  success: false,
+  loading: false
 }
 
 const authSlice = createSlice({
   name: 'auths',
   initialState: initialState,
   reducers: {
+    startLoading: (state, action) => {
+      state.loading = true;
+    },
+    stopLoading: (state, action) => {
+      state.loading = false;
+    },
     loginAuth(state, action) {
-      state.user = action.payload
-      state.success = true;
+      state.user = action.payload.user
+      state.success = action.payload.success || false;
+      state.error = action.payload.error || null;
+      state.loading = false;
     },
     logoutAuth(state, action) {
-      state.user = null;
-      state.success = true;
-    }
+      state.user = null
+      state.success = action?.payload?.success || false;
+      state.error = action?.payload?.error || null;
+      state.loading = false;
+    },
   },
-
-  extraReducers(builder) {
-    // builder
-    // .addCase('loginAuth', (state, action) => {
-    //   state.success = true;
-    // })
-    // .addCase('logoutAuth', (state, action) => {
-    //   state.success = true;
-    // })
-  }
 })
 
-export const { loginAuth, logoutAuth } = authSlice.actions
+export const {
+  startLoading,
+  stopLoading,
+  loginAuth,
+  logoutAuth
+} = authSlice.actions
 export default authSlice.reducer
